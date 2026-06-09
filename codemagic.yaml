@@ -9,8 +9,6 @@ workflows:
         PORT: "5173"
         BASE_PATH: "/"
     scripts:
-      - name: Install pnpm
-        script: npm install -g pnpm
       - name: Install dependencies
         script: pnpm install --ignore-scripts
       - name: Build web assets
