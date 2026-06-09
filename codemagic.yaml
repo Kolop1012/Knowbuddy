@@ -13,6 +13,11 @@ workflows:
         script: |
           corepack disable || true
           npm install -g pnpm --force
+          # Remove darwin native binary exclusions (needed on macOS build machines)
+          sed -i '' '/darwin/d' pnpm-workspace.yaml
+          sed -i '' '/linux/d' pnpm-workspace.yaml
+          # Delete lockfile so pnpm resolves fresh without those exclusions
+          rm -f pnpm-lock.yaml
       - name: Install dependencies
         script: pnpm install --ignore-scripts
       - name: Build web assets
