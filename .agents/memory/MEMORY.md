@@ -1,0 +1,3 @@
+- [Gemini structured generation](gemini-structured-generation.md) — how to get reliable JSON + control latency from gemini-2.5-flash via the Replit AI integration.
+- [API server crash resilience](api-server-crash-resilience.md) — the Express template ships with no error middleware/process handlers; uncaught errors silently kill it (workflow "finished", no log).
+- [Knowbuddy perspective categories](knowbuddy-perspective-categories.md) — octagon categories are model-self-identified per topic but must reuse the 8 fixed hex colors (frontend keys maps by them); api-server tsx has no watch — restart after edits.

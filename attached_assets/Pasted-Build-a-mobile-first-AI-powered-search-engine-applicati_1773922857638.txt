@@ -1,0 +1,192 @@
+Build a **mobile-first AI-powered search engine application** called **"Knowbuddy"**. 
+The app must be fully responsive and adapt seamlessly to all phone screen sizes (iOS & Android). 
+
+Core Requirements
+Framework: React with Tailwind CSS for styling. 
+Ensure the UI is mobile-first and uses flexible units (vw/vh) or Flexbox/Grid to automatically adjust to any phone screen size.
+Design Aesthetic: Clean, modern, and intellectual.Use a **modern dark gradient theme** similar to the provided references (deep blue background, soft gradients, rounded cards, minimalistic typography).
+Navigation: Use a state management system (like React Context or useState) to handle transitions between the four screens.
+
+## 🎨 Design System
+
+* Theme: Dark blue gradient (navy → deep teal)
+* Style: Clean, modern, soft shadows, rounded corners (16–24px radius)
+* Typography:
+
+  * Title: Elegant serif or semi-serif (for headings like "Knowbuddy")
+  * Body: Clean sans-serif
+* Components:
+
+  * Rounded cards with layered stack effect
+  * Soft glowing nodes and connection lines
+  * Pill-shaped buttons and tags
+* Animations:
+
+  * Smooth transitions
+  * Subtle floating / fade-in effects
+  * Swipe gestures for cards
+
+---
+
+## 📱 Screens & Functionality
+
+### 1. Splash Screen
+
+* Centered logo: Large letter **"K"**
+* App name: **Knowbuddy**
+* Tagline: Perspektivenvielfalt für Selbstdenker
+* Background: dark gradient
+* Animation: fade-in + slight scale, Auto-transition to the Input Screen after 2.5 seconds.
+
+---
+
+### 2. Input Screen (Search)
+
+* Centered layout, sleek search input field with a "Search" button.
+* Input field:
+  * Placeholder: "Begriff eingeben"
+  * Rounded, light contrast background
+* Search button:
+  * Label: "Suchen"
+  * Icon: magnifying glass
+* Below: **Topic suggestions (clickable chips)** 3 or 4 rows and keep moving from left to right or otherwise, 1 row has several chips such as:
+  * Migration
+  * Künstliche Intelligenz
+  * Klimakrise
+  * Populismus
+* Tap on suggestion = autofill + search
+
+---
+
+### 3. Perspective Screen (Core Feature)
+
+#### 🧠 AI-generated perspectives
+
+When user searches a topic, generate **8 perspectives**:
+
+1. Experiences and feelings
+2. Environment and resources
+3. Causes and effects
+4. Justice and dignity
+5. Identity and diversity
+6. Integration and participation
+7. Work and prosperity
+8. Power and the law
+
+---
+
+#### 🌐 Visualization
+
+* Display perspectives as **nodes in a circular/radar layout**
+* Nodes are connected with thin lines (network graph) - Draw faint connection lines between these nodes to represent relationships. Use a library like framer-motion for the card swipes and canvas or svg for the lines between the 8 perspectives.
+* Each node:
+
+  * Unique color
+  * Rounded rectangle
+  * Label text
+* When selected:
+
+  * Highlight node, show a summary card at the bottom.
+  * Emphasize connections
+
+---
+
+#### 🃏 Perspective Card (Bottom Stack)
+
+* Appears below visualization
+* Layered stack (cards behind visible)
+* Content:
+
+  * Perspective category (e.g. "PSYCHOLOGICAL PERSPECTIVE")
+  * Title (e.g. "Experiences and feelings")
+  * AI-generated summary text
+
+---
+
+#### 🔄 Card Interaction
+Implement a "stacked card" UI where the user can swipe down to reveal the next card. Include buttons: [Previous], [Next], and [Find out more].
+
+* Buttons:
+
+  * "Vorherige" (Previous)
+  * "Nächste" (Next)
+  * "Mehr erfahren" (Go to info page)
+* Gestures:
+
+  * Swipe down → next card
+  * Tap node → jump to that perspective
+
+---
+
+### 4. Information Page
+
+#### 📖 Content Levels
+
+Provide 3 levels of AI-generated content:
+
+1. **Intro** (short overview)
+2. **Analysis** (elaborative/medium depth)
+3. **Comprehensive** (detailed explanation)
+
+---
+
+#### 🧩 Layout
+
+* Header:
+
+  * Back button ("Zurück")
+  * Perspective title
+* Content card with rounded edges
+* Section titles clearly separated
+
+---
+
+#### 🔊 Audio Feature
+
+* Add **"Vorlesen" (Read aloud)** button
+* Use text-to-speech (browser/native API)
+* Toggle play/pause
+
+---
+
+## ⚙️ Technical Requirements
+
+* Framework: React (preferred) or Next.js
+* Styling: Tailwind CSS
+* Mobile-first responsive design
+* Use Flexbox/Grid for adaptive layouts
+* Use SVG or Canvas for network graph visualization
+* State management: React hooks or Zustand
+
+---
+
+## 🤖 AI Integration
+*Logic & Data
+Mock the AI responses initially using an object that contains content for the 8 perspectives and 3 depth levels.
+Ensure the "Find out more" button correctly passes the selected perspective's data to the Information Page.
+
+* Input: user search topic
+* Output:
+
+  * Generate 8 perspectives
+  * Generate:
+
+    * Short summary (card)
+    * Intro / Analysis / Comprehensive texts
+* Keep tone neutral, analytical, multi-perspective
+
+---
+
+## ✨ Extra UX Details
+
+* Smooth transitions between screens
+* Maintain consistent spacing and alignment
+* Use subtle gradients for cards
+* Ensure accessibility (contrast, readable fonts)
+* Optimize for touch interactions
+
+---
+
+## 🎯 Goal
+
+Create a **beautiful, intuitive, and thought-provoking multi-perspective search experience**, where users explore complex topics visually and intellectually.

@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: perspectives
+    description: AI-generated multi-perspective content
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /perspectives/text:
+    post:
+      operationId: generatePerspectivesFromText
+      tags: [perspectives]
+      summary: Generate perspectives from a topic
+      description: Uses AI to generate eight multi-perspective views on the given topic.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TextPerspectiveRequest"
+      responses:
+        "200":
+          description: Generated perspectives
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PerspectiveResult"
+  /perspectives/image:
+    post:
+      operationId: generatePerspectivesFromImage
+      tags: [perspectives]
+      summary: Generate perspectives from a photo
+      description: Uses AI vision to identify the main object in a photo and generate eight multi-perspective views on it.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImagePerspectiveRequest"
+      responses:
+        "200":
+          description: Generated perspectives
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PerspectiveResult"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    PerspectiveMode:
+      type: string
+      description: >-
+        The lens that shapes how the eight perspectives are chosen.
+        "wissenschaft" draws from scientific disciplines and the liberal arts,
+        "stakeholder" from the actors involved in the topic, and
+        "politische_debatte" from the constituent positions of the political debate.
+      enum:
+        - wissenschaft
+        - stakeholder
+        - politische_debatte
+    TextPerspectiveRequest:
+      type: object
+      properties:
+        topic:
+          type: string
+          minLength: 1
+          maxLength: 200
+        mode:
+          $ref: "#/components/schemas/PerspectiveMode"
+      required:
+        - topic
+    ImagePerspectiveRequest:
+      type: object
+      properties:
+        image:
+          type: string
+          description: Base64-encoded image data (without the data URL prefix).
+          minLength: 1
+        mimeType:
+          type: string
+          description: MIME type of the image, e.g. image/jpeg.
+          minLength: 1
+        mode:
+          $ref: "#/components/schemas/PerspectiveMode"
+      required:
+        - image
+        - mimeType
+    Perspective:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+        title:
+          type: string
+        color:
+          type: string
+        summary:
+          type: string
+        intro:
+          type: string
+        analysis:
+          type: string
+        comprehensive:
+          type: string
+      required:
+        - id
+        - category
+        - title
+        - color
+        - summary
+        - intro
+        - analysis
+        - comprehensive
+    PerspectiveResult:
+      type: object
+      properties:
+        topic:
+          type: string
+          description: The topic explored. For image requests, this is the detected object name.
+        perspectives:
+          type: array
+          items:
+            $ref: "#/components/schemas/Perspective"
+      required:
+        - topic
+        - perspectives
+

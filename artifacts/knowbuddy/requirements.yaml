@@ -1,0 +1,12 @@
+packages:
+  "framer-motion": "For smooth transitions between screens, swipeable cards, and fluid network graph animations"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility to safely merge Tailwind CSS classes"
+  "lucide-react": "Beautiful consistent icons for the UI"
+
+images: []
+
+notes:
+  - App is entirely client-side using React state for navigation as requested.
+  - Text-to-speech uses native window.speechSynthesis.
+  - No external backend dependencies needed.
