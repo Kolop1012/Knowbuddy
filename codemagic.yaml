@@ -9,8 +9,10 @@ workflows:
         PORT: "5173"
         BASE_PATH: "/"
     scripts:
-      - name: Disable corepack
-        script: corepack disable || true
+      - name: Setup pnpm
+        script: |
+          corepack disable || true
+          npm install -g pnpm --force
       - name: Install dependencies
         script: pnpm install --ignore-scripts
       - name: Build web assets
